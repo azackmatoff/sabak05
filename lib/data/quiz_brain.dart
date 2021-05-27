@@ -1,4 +1,4 @@
-import 'package:quizzler/models/question.dart';
+import 'package:sabak05/models/question.dart';
 
 // Bul klassty ishtetbeybiz
 class QuizBrain {

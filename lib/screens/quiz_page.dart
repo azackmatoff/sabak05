@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/data/quiz_brain.dart';
-import 'package:quizzler/models/question.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sabak05/data/quiz_brain.dart';
+import 'package:sabak05/data/tizme.dart';
+import 'package:sabak05/models/suroo.dart';
 
 class QuizPage extends StatefulWidget {
   @override
@@ -10,14 +10,71 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
+  List<Icon> jooptordunIkonkasi = [];
 
   @override
   void initState() {
     super.initState();
     // ifElse.funkciyaAty('Bul men jibergen string');
     // String data = ifElse.sanNolbu(12);
+    print('kacnha suroo bar: ${Tizme().suroolor.length}');
 
-    // print('kelgen data: $data');
+    // bool tuuraKata = false;
+
+    // int san = 2;
+
+    // bool sanEkigeBarabarby(int jiberilgenSan) {
+    //   return 2 == jiberilgenSan;
+    // }
+
+    // bool booleanBarabarby(bool jiberilgenJoop) {
+    //   return tuuraKata == jiberilgenJoop;
+    // }
+
+    // print('sanEkigeBarabarby joobu: ${sanEkigeBarabarby(2)}');
+    // print('boleanBarabarby joobu: ${booleanBarabarby(false)}');
+  }
+
+  // tizme.suroolor.add(Suroo(suroo: 'Osh Marstaby?', joop: true));
+
+  void jooptuTeksher(bool koldonuuchununJoobu) {
+    bool _tuuraJoop = tizme.jooptuTeksheruu();
+
+    if (tizme.index == tizme.suroolor.length - 1) {
+    } else {}
+
+    if (koldonuuchununJoobu == _tuuraJoop) {
+      // KOLDONUUCHU TUURA JOOP BERDI
+
+      jooptordunIkonkasi.add(
+        Icon(
+          Icons.check,
+          color: Colors.green,
+        ),
+      );
+
+      setState(() {});
+    } else {
+      //  KOLDONUUCHU TUURA  EMES, KATA JOOP BERDI
+      jooptordunIkonkasi.add(
+        Icon(
+          Icons.close,
+          color: Colors.red,
+        ),
+      );
+      setState(() {});
+    }
+
+    tizme.suroonuOtkor();
+
+    print('tizme.index ${tizme.index}');
+
+    // (koldonuuchununJoobu == true) ===== (koldonuuchununJoobu)
+    // if (koldonuuchununJoobu == true) {
+    //   //
+    // } else {
+    //   //
+    // }
   }
 
   void checkAnswer(bool userPickedAnswer) {
@@ -33,11 +90,11 @@ class _QuizPageState extends State<QuizPage> {
         //Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.").show();
 
         //Modified for our purposes:
-        Alert(
-          context: context,
-          title: 'Finished!',
-          desc: 'You\'ve reached the end of the quiz.',
-        ).show();
+        // Alert(
+        //   context: context,
+        //   title: 'Finished!',
+        //   desc: 'You\'ve reached the end of the quiz.',
+        // ).show();
 
         //TODO Step 4 Part C - reset the questionNumber,
         quizBrain.reset();
@@ -76,7 +133,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(),
+                tizme.textAlipKel(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -100,8 +157,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
-                checkAnswer(true);
+                jooptuTeksher(true);
               },
             ),
           ),
@@ -118,15 +174,12 @@ class _QuizPageState extends State<QuizPage> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {
-                //The user picked false.
-                checkAnswer(false);
-              },
+              onPressed: () => jooptuTeksher(false),
             ),
           ),
         ),
         Row(
-          children: scoreKeeper,
+          children: jooptordunIkonkasi,
         )
       ],
     );

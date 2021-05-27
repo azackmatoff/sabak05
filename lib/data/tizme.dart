@@ -1,8 +1,8 @@
-import 'package:quizzler/models/suroo.dart';
+import 'package:sabak05/models/suroo.dart';
 
 //Munu ishtetebiz
 class Tizme {
-  int _index = 0;
+  int index = 0;
 
   List<Suroo> suroolor = [
     Suroo(suroo: 'KG din borobur Tashkent', joop: false),
@@ -10,19 +10,26 @@ class Tizme {
     Suroo(suroo: 'Batken shaary Djalal-Abad oblusuna karayt', joop: false),
   ];
 
-  final Suroo _question = Suroo();
-
-//  _question.joop;
-
   String textAlipKel() {
-    return suroolor[_index].suroo;
+    print('textAlipKel $index');
+    return suroolor[index].suroo;
   }
 
-  bool jooptuAlipKel() {
-    return suroolor[_index].joop;
+  bool jooptuTeksheruu() {
+    return suroolor[index].joop;
+  }
+
+  void suroonuOtkor() {
+    if (index == suroolor.length - 1) {
+      return;
+    } else {
+      index++;
+    }
   }
 
   bool jooptuAlipKel2(int san) {
-    return suroolor[_index].joop;
+    return suroolor[index].joop;
   }
 }
+
+final Tizme tizme = Tizme();
